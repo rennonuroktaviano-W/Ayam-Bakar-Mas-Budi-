@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme {
+  --color-api-orange: #e8590c;
+  --color-api-orange-dark: #c2410c;
+  --color-api-brick: #b02a1b;
+  --color-api-honey: #f4b942;
+  --color-api-ember: #ff8a3d;
+  --color-api-charcoal: #1c1917;
+  --color-api-charcoal-soft: #2b2622;
+  --color-api-cream: #fff8f0;
+  --color-api-sand: #f7e6d2;
+
+  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1rem;
+
+  --animate-fade-up: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-steam: steam 5s ease-in-out infinite;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes steam {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-6px) scale(1.05);
+  }
+}
+
+:root {
+  color-scheme: light;
+  --nav-height: 4rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 1rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-api-cream);
+  color: var(--color-api-charcoal);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Sticky WhatsApp bar needs breathing room on mobile so it never covers content. */
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-api-honey);
+  outline-offset: 2px;
+}
+
+/* Reveal-on-scroll helper for lightweight fade-up motion. */
+.reveal {
+  opacity: 0;
+  transform: translateY(1.25rem);
+}
+
+.reveal[data-visible="true"] {
+  animation: var(--animate-fade-up);
+}
+
+/* Native scroll-snap carousel (mobile-first, no JS library). */
+.snap-x-rail {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.snap-x-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.snap-item {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Thin styling for the ember accent scrollbar on desktop. */
+.charcoal-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.charcoal-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-api-orange);
+  border-radius: 999px;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
