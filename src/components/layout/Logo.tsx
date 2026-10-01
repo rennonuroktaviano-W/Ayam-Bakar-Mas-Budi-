@@ -9,7 +9,7 @@ export function Logo({ tone = "dark" }: { tone?: "dark" | "light" }) {
       aria-label="Ayam Bakar Mas Budi - Beranda"
     >
       <Image
-        src="/images/logo-mark.png"
+        src="/images/logo-mark.webp"
         alt=""
         width={40}
         height={40}

@@ -52,27 +52,43 @@ link `wa.me` ikut berubah.
 
 ## Placeholder gambar
 
-Foto masih placeholder. Untuk regenerate:
+Foto masih placeholder — ilustrasi abstrak yang di-render by script, bukan foto
+makanan sungguhan. Regenerate dengan dua langkah:
 
 ```bash
-node scripts/generate-placeholders.mjs
+npm run images:generate   # tulis PNG ke public/images/ (tanpa dependency)
+npm run images:optimize   # PNG -> WebP, lalu hapus PNG-nya
 ```
 
-Setelah foto asli tersedia, taruh di `public/images/` lalu perbarui
-path di `src/data/menu.ts` dan komponen terkait. Aturan aspect ratio
-yang dipakai: `4/3` untuk kartu menu dan hero, `16/10` untuk banner promo,
-`16/10` untuk peta.
+`images:generate` murni Node tanpa dependency. `images:optimize` memakai
+`sharp` yang sudah ikut sebagai dependency Next.js, jadi tidak perlu install
+tambahan. Hasil akhir WebP sekitar 0.5 MB untuk 22 gambar.
+
+Setelah regenerate, jalankan `npm run images:optimize` lalu pastikan path di
+`src/data/menu.ts` tetap memakai ekstensi `.webp`.
+
+Untuk-quality final, ganti dengan foto asli: taruh di `public/images/` dengan
+nama yang sama (ekstensi `.webp`) lalu jalankan `npm run images:optimize`
+untuk file tambahan. Aturan aspect ratio yang dipakai: `4/3` untuk kartu menu
+dan hero, `16/10` untuk banner promo dan peta.
 
 ## Catatan performa & aksesibilitas
 
-- Semua gambar lewat `next/image` dengan `sizes` eksplisit.
+- Semua gambar lewat `next/image` dengan `sizes` eksplisit; sumbernya WebP dan
+  dioptimasi ulang on-the-fly per ukuran.
 - Tanpa library carousel; carousel mobile pakai scroll-snap native.
-- Reveal-on-scroll pakai IntersectionObserver + CSS, hormati
-  `prefers-reduced-motion`.
-- Tombol WhatsApp mobile sticky di bawah, body diberi padding bawah
-  agar tidak menutupi konten, plus dukungan `env(safe-area-inset-*)`.
+- Reveal-on-scroll pakai IntersectionObserver + CSS. Konten **tidak pernah**
+  bergantung pada animasi untuk terlihat: state default-nya visible, dan
+  hidden start hanya aktif kalau `html.js` ada (di-set inline script sebelum
+  paint) serta `prefers-reduced-motion` tidak aktif.
+- Peta Google dimuat setelah diklik (click-to-load), jadi tidak ada kotak
+  kosong kalau `maps.googleapis.com` tidak bisa diakses.
+- Tombol WhatsApp mobile sticky di bawah, body diberi padding bawah agar tidak
+  menutupi konten, plus dukungan `env(safe-area-inset-*)`.
 - Skip link, satu `h1` per halaman, semantic landmarks, `lang="id"`.
 
 ## Deploy
 
 Siap untuk Vercel: `vercel` atau push ke repo yang terhubung Vercel.
+Ganti `site.url` di `src/data/site.ts` dengan domain asli dulu — nilai itu
+dipakai `metadataBase`, `sitemap.xml`, dan JSON-LD.

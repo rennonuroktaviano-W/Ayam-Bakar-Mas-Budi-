@@ -152,7 +152,7 @@ export function Footer() {
               </li>
             </ul>
             <Image
-              src="/images/logo-mark.png"
+              src="/images/logo-mark.webp"
               alt=""
               width={96}
               height={96}

@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "images:generate": "node scripts/generate-placeholders.mjs",
+    "images:optimize": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
-    "@next/swc-win32-x64-msvc": "^15.5.27",
     "lucide-react": "^1.49.0",
     "next": "15.5.27",
     "react": "19.1.0",

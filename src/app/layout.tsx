@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     description: site.description,
     images: [
       {
-        url: "/images/hero-ayam-bakar.png",
+        url: "/images/hero-ayam-bakar.webp",
         width: 1200,
         height: 900,
         alt: "Ayam bakar Mas Budi dengan sambal dan lalapan",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${site.brand} — ${site.tagline}`,
     description: site.description,
-    images: ["/images/hero-ayam-bakar.png"],
+    images: ["/images/hero-ayam-bakar.webp"],
   },
   robots: {
     index: true,
@@ -74,6 +74,10 @@ export const viewport = {
   viewportFit: "cover",
 };
 
+// Sets `js` on <html> before first paint so the reveal-on-scroll start state
+// only applies when JavaScript is actually available to reveal it again.
+const JS_FLAG_SCRIPT = "document.documentElement.classList.add('js');";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -81,6 +85,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className={`${inter.variable} ${playfair.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: JS_FLAG_SCRIPT }} />
+      </head>
       <body className="min-h-dvh antialiased">
         <a
           href="#main"

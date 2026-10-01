@@ -83,7 +83,7 @@ export function Hero() {
           <div className="relative">
             <div className="relative mx-auto aspect-4/3 w-full max-w-lg overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-black/40 sm:rounded-4xl">
               <Image
-                src="/images/hero-ayam-bakar.png"
+                src="/images/hero-ayam-bakar.webp"
                 alt="Ayam bakar di atas piring dengan sambal dan lalapan"
                 fill
                 priority

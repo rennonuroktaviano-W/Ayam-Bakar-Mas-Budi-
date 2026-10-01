@@ -22,7 +22,7 @@ export function AboutSnippet() {
           <div className="relative order-2 lg:order-1">
             <div className="relative mx-auto aspect-4/3 w-full max-w-lg overflow-hidden rounded-3xl shadow-xl shadow-api-charcoal/10">
               <Image
-                src="/images/dapur-bakar.png"
+                src="/images/dapur-bakar.webp"
                 alt="Dapur Mas Budi membakar ayam di atas arang"
                 fill
                 sizes="(max-width: 1024px) 100vw, 512px"
@@ -33,7 +33,7 @@ export function AboutSnippet() {
             <div className="absolute -right-2 -bottom-5 w-40 overflow-hidden rounded-2xl border-4 border-white shadow-xl sm:-right-4 sm:w-52">
               <div className="relative aspect-4/3 w-full">
                 <Image
-                  src="/images/tim-kitchen.png"
+                  src="/images/tim-kitchen.webp"
                   alt="Tim dapur Ayam Bakar Mas Budi"
                   fill
                   sizes="208px"

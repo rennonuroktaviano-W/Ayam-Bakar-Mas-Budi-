@@ -102,6 +102,60 @@ function gradient(c, from, to, seed = 7) {
   }
 }
 
+// Per-pixel film grain. Large smooth gradients band into a handful of colours
+// and read as an empty box on screen; grain restores high-frequency detail.
+function grain(c, amount = 10, seed = 991) {
+  const rand = rng(seed);
+  for (let i = 0; i < c.w * c.h; i++) {
+    const n = (rand() - 0.5) * amount;
+    const o = i * 3;
+    c.px[o] = clamp255(c.px[o] + n);
+    c.px[o + 1] = clamp255(c.px[o + 1] + n);
+    c.px[o + 2] = clamp255(c.px[o + 2] + n);
+  }
+}
+
+// Blotchy low-frequency texture, keeps grain from looking like TV static.
+function texture(c, seed = 992, blobs = 220, radiusScale = 0.16) {
+  const rand = rng(seed);
+  for (let i = 0; i < blobs; i++) {
+    const x = rand() * c.w;
+    const y = rand() * c.h;
+    const r = c.w * radiusScale * (0.2 + rand());
+    const dark = rand() > 0.5;
+    const col = dark ? "#000000" : "#ffffff";
+    ellipse(c, x, y, r, r * (0.5 + rand() * 0.5), col, 0.012 + rand() * 0.022);
+  }
+}
+
+// Darkened edges, like a real lens vignette.
+function vignette(c, strength = 0.3) {
+  const cx = c.w / 2;
+  const cy = c.h / 2;
+  const maxD = Math.sqrt(cx * cx + cy * cy);
+  for (let y = 0; y < c.h; y++) {
+    for (let x = 0; x < c.w; x++) {
+      const d = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2) / maxD;
+      if (d < 0.55) continue;
+      const f = ((d - 0.55) / 0.45) ** 1.6 * strength;
+      const base = getPx(c, x, y);
+      setPx(c, x, y, mix(base, [0, 0, 0], f));
+    }
+  }
+}
+
+// Final pass every photo gets: texture -> vignette -> grain.
+function finish(c, seed = 991, grainAmount = 10) {
+  texture(c, seed, Math.round((c.w * c.h) / 2400));
+  vignette(c);
+  grain(c, grainAmount, seed);
+}
+
+// Small specular highlight blob.
+function sparkle(c, cx, cy, rx, ry, color = "#FFFFFF", opacity = 0.5) {
+  ellipse(c, cx, cy, rx, ry, color, opacity);
+}
+
 // Soft radial glow (additive).
 function glow(c, cx, cy, radius, color, strength = 0.55) {
   const col = hex(color);
@@ -202,6 +256,8 @@ function chickenPhoto(c, seed = 1, tint = "#7C2D12") {
       ellipse(c, x, y, 6 + t * 10, 6 + t * 10, "#FFFFFF", 0.1 * (1 - t));
     }
   }
+
+  finish(c, seed * 13, 10);
 }
 
 // Rice box / paket photo.
@@ -236,19 +292,29 @@ function paketPhoto(c, seed = 2) {
   // lid
   roundedRect(c, bx - bw * 0.03, by - bh * 0.22, bw * 1.06, bh * 0.2, c.w * 0.025, "#C98F4B", 0.95);
   glow(c, c.w * 0.2, by - bh * 0.1, c.w * 0.2, "#FFF3D6", 0.35);
+
+  // Chopstick / spoon resting on the box
+  roundedRect(c, bx + bw * 0.12, by - bh * 0.3, bw * 0.62, c.h * 0.012, c.w * 0.006, "#8B5A2B", 0.9);
+  ellipse(c, bx + bw * 0.79, by - bh * 0.29, c.w * 0.03, c.h * 0.016, "#C98F4B", 0.9);
+
+  finish(c, seed * 17, 10);
 }
 
 // Drinks photo.
-function drinkPhoto(c, seed = 3, liquid = "#B45309", ice = true) {
+function drinkPhoto(c, seed = 3, liquid = "#B45309", garnish = "#FDE68A") {
   gradient(c, "#EFE0CB", "#D9BC97", seed);
   glow(c, c.w * 0.5, c.h * 0.15, c.w * 0.6, "#FFF8E7", 0.5);
   const cx = c.w / 2;
   const top = c.h * 0.2;
   const bot = c.h * 0.86;
   const rx = c.w * 0.19;
-  ellipse(c, cx, bot + c.h * 0.02, rx * 1.5, c.h * 0.05, "#7C2D12", 0.18, 2);
-  // glass
-  ellipse(c, cx, top, rx, c.h * 0.05, "#FFFFFF", 0.35);
+  const liq = hex(liquid);
+
+  // Table surface reflection + contact shadow
+  ellipse(c, cx, bot + c.h * 0.02, rx * 1.6, c.h * 0.05, "#7C2D12", 0.16, 2);
+  ellipse(c, cx, bot + c.h * 0.005, rx * 1.15, c.h * 0.03, "#FFFFFF", 0.22);
+
+  // Glass body with liquid, vertical shading and a specular streak
   for (let y = top; y < bot; y++) {
     const t = (y - top) / (bot - top);
     const halfW = rx * (0.82 + t * 0.22);
@@ -256,31 +322,102 @@ function drinkPhoto(c, seed = 3, liquid = "#B45309", ice = true) {
     for (let x = Math.round(cx - halfW); x <= Math.round(cx + halfW); x++) {
       const edge = Math.abs(x - cx) / halfW;
       if (edge > 1) continue;
-      let col = null;
-      if (fill) col = mix(hex(liquid), hex("#FDE68A"), (1 - edge) * 0.25);
-      const shade = 0.55 + 0.45 * (1 - edge ** 2);
-      setPx(c, x, y, (col || getPx(c, x, y)).map((v) => v * (0.55 + shade * 0.55)));
+      let col = getPx(c, x, y);
+      if (fill) col = mix(liq, hex("#FDE68A"), (1 - edge) * 0.22);
+      // cylinder shading: darker at both edges, bright core
+      const shade = 0.5 + 0.5 * (1 - edge ** 2) ** 0.8;
+      setPx(c, x, y, col.map((v) => v * (0.45 + shade * 0.65)));
     }
   }
-  // rim + liquid surface
-  ellipse(c, cx, top + (bot - top) * 0.22, rx * 0.84, c.h * 0.035, mix(hex(liquid), hex("#FFF7D6"), 0.35), 0.95);
-  ellipse(c, cx, top, rx, c.h * 0.05, "#FFFDF8", 0.5);
-  ellipse(c, cx, top, rx * 0.84, c.h * 0.038, "#EFE3D0", 0.8);
-  if (ice) {
-    const rand = rng(seed * 13 + 3);
-    for (let i = 0; i < 9; i++) {
-      const x = cx + (rand() - 0.5) * rx * 1.2;
-      const y = top + (bot - top) * (0.3 + rand() * 0.45);
-      roundedRect(c, x - rx * 0.16, y - rx * 0.14, rx * 0.32, rx * 0.28, rx * 0.05, "#FFFFFF", 0.5);
+
+  // Liquid surface ellipse with meniscus ring
+  ellipse(
+    c,
+    cx,
+    top + (bot - top) * 0.22,
+    rx * 0.84,
+    c.h * 0.035,
+    mix(liq, hex("#FFF7D6"), 0.35),
+    0.95,
+  );
+  ellipse(c, cx, top + (bot - top) * 0.22, rx * 0.7, c.h * 0.024, "#FFFFFF", 0.16);
+
+  // Glass rim
+  ellipse(c, cx, top, rx, c.h * 0.05, "#FFFDF8", 0.55);
+  ellipse(c, cx, top, rx * 0.84, c.h * 0.038, "#EFE3D0", 0.85);
+  ellipse(c, cx, top, rx * 0.84, c.h * 0.03, "#D8C8B0", 0.35);
+
+  // Ice cubes with facet highlights and darker edges
+  const rand = rng(seed * 13 + 3);
+  for (let i = 0; i < 11; i++) {
+    const x = cx + (rand() - 0.5) * rx * 1.25;
+    const y = top + (bot - top) * (0.28 + rand() * 0.5);
+    const s = rx * (0.15 + rand() * 0.13);
+    const rot = (rand() - 0.5) * 0.9;
+    roundedRect(c, x - s, y - s * 0.85, s * 2, s * 1.7, s * 0.28, "#EAF4F7", 0.55);
+    // facet: brighter top-left triangle
+    for (let yy = y - s * 0.85; yy < y; yy++) {
+      for (let xx = x - s; xx < x; xx++) {
+        const p = (xx - (x - s)) / s;
+        const q = (yy - (y - s * 0.85)) / (s * 1.7);
+        if (p + q < 0.75) setPx(c, Math.round(xx), Math.round(yy), "#FFFFFF");
+      }
+    }
+    roundedRect(c, x - s + rot, y - s * 0.85 + rot, s * 2, s * 1.7, s * 0.28, "#B8D4DC", 0.28);
+    sparkle(c, x - s * 0.45, y - s * 0.45, s * 0.3, s * 0.18, "#FFFFFF", 0.75);
+  }
+
+  // Condensation droplets on the outside
+  for (let i = 0; i < 34; i++) {
+    const t = 0.3 + rand() * 0.66;
+    const y = top + (bot - top) * t;
+    const halfW = rx * (0.82 + ((y - top) / (bot - top)) * 0.22);
+    const side = rand() > 0.5 ? 1 : -1;
+    const x = cx + side * halfW * (0.55 + rand() * 0.4);
+    const r = 1.5 + rand() * 3.5;
+    ellipse(c, x, y, r, r * 1.25, "#FFFFFF", 0.4);
+    ellipse(c, x - r * 0.3, y - r * 0.4, r * 0.4, r * 0.4, "#FFFFFF", 0.85);
+  }
+
+  // Tall specular streak on the glass
+  for (let y = top + c.h * 0.03; y < bot - c.h * 0.03; y++) {
+    const halfW = rx * (0.82 + ((y - top) / (bot - top)) * 0.22);
+    for (let x = 0; x < c.w * 0.016; x++) {
+      const px = cx - halfW * 0.62 + x;
+      setPx(c, px, y, mix(getPx(c, px, y), hex("#FFFFFF"), 0.5));
     }
   }
-  // straw
+
+  // Straw: two-tone with a highlight edge
   const sx = cx + rx * 0.5;
-  for (let y = top - c.h * 0.2; y < top + c.h * 0.2; y++) {
-    for (let x = 0; x < c.w * 0.022; x++) {
-      setPx(c, sx + x, y, mix(getPx(c, sx + x, y), hex("#DC2626"), 0.9));
+  const strawTop = top - c.h * 0.22;
+  for (let y = Math.round(strawTop); y < top + c.h * 0.2; y++) {
+    for (let x = 0; x < c.w * 0.024; x++) {
+      const v = x < c.w * 0.006 ? "#F87171" : "#DC2626";
+      setPx(c, Math.round(sx + x), y, mix(getPx(c, Math.round(sx + x), y), hex(v), 0.95));
     }
   }
+
+  // Garnish: citrus wheel with segments
+  const gx = cx - rx * 0.55;
+  const gy = top - c.h * 0.02;
+  ellipse(c, gx, gy, c.w * 0.062, c.w * 0.062, "#FBBF24", 0.95);
+  ellipse(c, gx, gy, c.w * 0.052, c.w * 0.052, "#FEF3C7", 0.9);
+  for (let i = 0; i < 8; i++) {
+    const a = (i / 8) * Math.PI * 2;
+    ellipse(
+      c,
+      gx + Math.cos(a) * c.w * 0.028,
+      gy + Math.sin(a) * c.w * 0.028,
+      c.w * 0.012,
+      c.w * 0.009,
+      garnish,
+      0.75,
+    );
+  }
+  ellipse(c, gx, gy, c.w * 0.008, c.w * 0.008, "#FEF9C3", 0.9);
+
+  finish(c, seed * 7, 9);
 }
 
 // Dessert photo.
@@ -302,9 +439,45 @@ function dessertPhoto(c, seed = 4) {
   ellipse(c, cx, cy - c.h * 0.14, c.w * 0.1, c.h * 0.07, "#3F2313", 0.9);
   ellipse(c, cx - c.w * 0.02, cy - c.h * 0.15, c.w * 0.05, c.h * 0.03, "#92400E", 0.6);
   ellipse(c, cx + c.w * 0.13, cy + c.h * 0.12, c.w * 0.07, c.h * 0.045, "#FDE68A", 0.9);
-  // ice cream scoop
-  ellipse(c, cx + c.w * 0.16, cy - c.h * 0.18, c.w * 0.1, c.h * 0.09, "#FDE68A", 0.95);
-  ellipse(c, cx + c.w * 0.14, cy - c.h * 0.2, c.w * 0.05, c.h * 0.04, "#FFF7D6", 0.8);
+
+  // Scoop of ice cream with scoop ridges
+  const sx = cx + c.w * 0.16;
+  const sy = cy - c.h * 0.18;
+  ellipse(c, sx, sy, c.w * 0.105, c.h * 0.092, "#E7B76A", 0.95);
+  ellipse(c, sx, sy, c.w * 0.088, c.h * 0.076, "#FDE68A", 0.95);
+  for (let i = 0; i < 5; i++) {
+    const a = (i / 5) * Math.PI * 2 + 0.4;
+    ellipse(
+      c,
+      sx + Math.cos(a) * c.w * 0.045,
+      sy + Math.sin(a) * c.h * 0.04,
+      c.w * 0.022,
+      c.h * 0.014,
+      "#FEF9C3",
+      0.55,
+    );
+  }
+  sparkle(c, sx - c.w * 0.03, sy - c.h * 0.035, c.w * 0.026, c.h * 0.014, "#FFFFFF", 0.8);
+
+  // Chocolate drizzle zigzag across the plate
+  for (let t = 0; t <= 1; t += 0.004) {
+    const x = cx - c.w * 0.3 + t * c.w * 0.6;
+    const y = cy + c.h * 0.06 + Math.sin(t * 18) * c.h * 0.022;
+    ellipse(c, x, y, 2.6, 2.6, "#3F2313", 0.85);
+  }
+
+  // Crushed nuts sprinkle
+  const nutRand = rng(seed * 29 + 11);
+  for (let i = 0; i < 70; i++) {
+    const a = nutRand() * Math.PI * 2;
+    const r = nutRand() * 0.3;
+    const x = cx + Math.cos(a) * c.w * r;
+    const y = cy + Math.sin(a) * c.h * r * 0.9;
+    const s = 1.5 + nutRand() * 2.5;
+    ellipse(c, x, y, s, s * 0.8, nutRand() > 0.5 ? "#92400E" : "#FDE68A", 0.7);
+  }
+
+  finish(c, seed * 5, 10);
 }
 
 // Kitchen / grill scene.
@@ -341,6 +514,22 @@ function kitchenPhoto(c, seed = 5) {
     }
   }
   glow(c, c.w * 0.5, c.h * 0.95, c.w * 0.7, "#B45309", 0.2);
+
+  // Hanging utensils silhouette for depth
+  for (let i = 0; i < 4; i++) {
+    const x = c.w * (0.08 + i * 0.06);
+    roundedRect(c, x - 1.5, 0, 3, c.h * 0.16, 1, "#0C0A09", 0.5);
+    ellipse(c, x, c.h * 0.17, c.w * 0.016, c.h * 0.022, "#0C0A09", 0.5);
+  }
+
+  // Sauce bottles on the counter
+  for (let i = 0; i < 3; i++) {
+    const x = c.w * (0.62 + i * 0.09);
+    roundedRect(c, x - c.w * 0.02, c.h * 0.06, c.w * 0.04, c.h * 0.16, c.w * 0.01, i === 1 ? "#EA580C" : "#FDE68A", 0.55);
+    roundedRect(c, x - c.w * 0.008, c.h * 0.03, c.w * 0.016, c.h * 0.04, c.w * 0.005, "#0C0A09", 0.6);
+  }
+
+  finish(c, seed * 3, 12);
 }
 
 // Team photo.
@@ -379,6 +568,8 @@ function teamPhoto(c, seed = 6) {
     }
     ellipse(c, cx, c.h * 0.47, c.w * 0.07, c.h * 0.02, "#F5E6CC", 0.9);
   }
+
+  finish(c, seed * 19, 10);
 }
 
 // Interior / location photo.
@@ -406,6 +597,28 @@ function interiorPhoto(c, seed = 7) {
     roundedRect(c, x - 1, 0, 2, c.h * 0.25, 1, "#0C0A09", 0.8);
   }
   glow(c, c.w * 0.5, c.h * 1.02, c.w * 0.8, "#B45309", 0.25);
+
+  // Wall panelling + window light
+  for (let i = 0; i < 8; i++) {
+    roundedRect(c, c.w * 0.02 + i * c.w * 0.125, c.h * 0.42, c.w * 0.008, c.h * 0.35, 4, "#1C1917", 0.35);
+  }
+  roundedRect(c, c.w * 0.68, c.h * 0.34, c.w * 0.26, c.h * 0.24, c.w * 0.01, "#FDE68A", 0.12);
+  roundedRect(c, c.w * 0.68, c.h * 0.34, c.w * 0.26, c.h * 0.24, c.w * 0.01, "#FDE68A", 0);
+  for (let i = 1; i < 3; i++) {
+    roundedRect(c, c.w * 0.68 + (c.w * 0.26 / 3) * i, c.h * 0.34, 3, c.h * 0.24, 1, "#1C1917", 0.5);
+  }
+
+  // Extra table props: glasses, plates, cutlery
+  const rand = rng(seed * 41);
+  for (let i = 0; i < 3; i++) {
+    const x = c.w * (0.2 + i * 0.3);
+    const y = c.h * (0.62 + (i % 2) * 0.08);
+    roundedRect(c, x + c.w * 0.09, y - c.h * 0.04, c.w * 0.016, c.h * 0.05, 4, "#FFFDF8", 0.35);
+    roundedRect(c, x - c.w * 0.12, y - c.h * 0.035, c.w * 0.03, c.h * 0.012, 3, "#D6D3D1", 0.5);
+    ellipse(c, x + c.w * (0.02 + rand() * 0.04), y - c.h * 0.03, c.w * 0.018, c.h * 0.014, "#FFFDF8", 0.45);
+  }
+
+  finish(c, seed * 11, 11);
 }
 
 // Logo mark (square, transparent-ish background -> solid warm).
@@ -442,9 +655,9 @@ const jobs = [
   ["menu/tahu-tempe-bakar.png", (c) => chickenPhoto(c, 15, "#B45309"), 800, 600],
   ["menu/lalapan-sambal.png", (c) => paketPhoto(c, 16), 800, 600],
   ["menu/terong-bakar.png", (c) => chickenPhoto(c, 17, "#92400E"), 800, 600],
-  ["menu/es-teh-manis.png", (c) => drinkPhoto(c, 18, "#B45309"), 800, 600],
-  ["menu/es-jeruk.png", (c) => drinkPhoto(c, 19, "#EA580C"), 800, 600],
-  ["menu/jus-alpukat.png", (c) => drinkPhoto(c, 20, "#65A30D"), 800, 600],
+  ["menu/es-teh-manis.png", (c) => drinkPhoto(c, 18, "#B45309", "#FDE68A"), 800, 600],
+  ["menu/es-jeruk.png", (c) => drinkPhoto(c, 19, "#EA580C", "#FED7AA"), 800, 600],
+  ["menu/jus-alpukat.png", (c) => drinkPhoto(c, 20, "#65A30D", "#D9F99D"), 800, 600],
   ["menu/pisang-bakar.png", (c) => dessertPhoto(c, 21), 800, 600],
   ["menu/es-krim.png", (c) => dessertPhoto(c, 22), 800, 600],
   ["hero-ayam-bakar.png", (c) => chickenPhoto(c, 23, "#8A4322"), 1200, 900],

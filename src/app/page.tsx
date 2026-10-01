@@ -27,8 +27,8 @@ function jsonLd() {
     servesCuisine: "Indonesian",
     currenciesAccepted: "IDR",
     paymentAccepted: "Cash, QRIS, Debit, Credit Card",
-    image: `${site.url}/images/hero-ayam-bakar.png`,
-    logo: `${site.url}/images/logo-mark.png`,
+    image: `${site.url}/images/hero-ayam-bakar.webp`,
+    logo: `${site.url}/images/logo-mark.webp`,
     sameAs: [site.socials.instagram, site.socials.facebook, site.socials.tiktok],
     address: {
       "@type": "PostalAddress",

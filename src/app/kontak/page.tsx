@@ -9,6 +9,7 @@ import {
   Truck,
 } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/SocialIcons";
+import { MapEmbed } from "@/components/ui/MapEmbed";
 import { Container } from "@/components/ui/Container";
 import { ExternalButtonLink } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -39,7 +40,7 @@ function jsonLd() {
     name: site.brand,
     url: `${site.url}/kontak`,
     telephone: site.phoneDisplay,
-    image: `${site.url}/images/ruang-makan.png`,
+    image: `${site.url}/images/ruang-makan.webp`,
     priceRange: "Rp10.000 - Rp200.000",
     address: {
       "@type": "PostalAddress",
@@ -214,18 +215,7 @@ Parkir motor gratis di depan. Masuk dari Jl. Raya
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-3xl border border-api-charcoal/10 shadow-md shadow-api-charcoal/5 lg:col-span-3">
-              <div className="relative aspect-4/3 w-full sm:aspect-16/10">
-                <iframe
-                  title={`Peta lokasi ${site.brand}`}
-                  src={site.mapsEmbedUrl}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen
-                  className="absolute inset-0 h-full w-full border-0"
-                />
-              </div>
-            </div>
+            <MapEmbed className="lg:col-span-3" />
           </div>
         </Container>
       </section>
@@ -236,7 +226,7 @@ Parkir motor gratis di depan. Masuk dari Jl. Raya
             <div className="grid items-center gap-0 md:grid-cols-2">
               <div className="relative aspect-4/3 w-full md:aspect-auto md:h-full md:min-h-64">
                 <Image
-                  src="/images/promo-nasi-box.png"
+                  src="/images/promo-nasi-box.webp"
                   alt="Nasi box ayam bakar untuk catering"
                   fill
                   sizes="(max-width: 768px) 100vw, 480px"

@@ -3,6 +3,7 @@ import { formattedAddress, mapsDirectionsUrl, site } from "@/data/site";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ExternalButtonLink } from "@/components/ui/Button";
+import { MapEmbed } from "@/components/ui/MapEmbed";
 import { waCustomLink } from "@/lib/whatsapp";
 
 export function LocationSection() {
@@ -77,18 +78,7 @@ export function LocationSection() {
             </div>
           </div>
 
-          <div className="order-1 overflow-hidden rounded-3xl border border-api-charcoal/10 shadow-md shadow-api-charcoal/5 lg:order-2 lg:col-span-3">
-            <div className="relative aspect-4/3 w-full sm:aspect-16/10">
-              <iframe
-                title={`Peta lokasi ${site.brand}`}
-                src={site.mapsEmbedUrl}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-                className="absolute inset-0 h-full w-full border-0"
-              />
-            </div>
-          </div>
+          <MapEmbed className="order-1 lg:order-2 lg:col-span-3" />
         </div>
       </Container>
     </section>

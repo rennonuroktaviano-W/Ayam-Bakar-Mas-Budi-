@@ -44,7 +44,7 @@ export default function TentangPage() {
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div className="relative mx-auto aspect-4/3 w-full max-w-lg overflow-hidden rounded-3xl shadow-xl shadow-api-charcoal/10">
               <Image
-                src="/images/rim-kitchen.png"
+                src="/images/tim-kitchen.webp"
                 alt="Tim dapur Ayam Bakar Mas Budi menyiapkan bumbu"
                 fill
                 sizes="(max-width: 1024px) 100vw, 512px"
