@@ -6,7 +6,7 @@ import {
   InstagramIcon,
   TikTokIcon,
 } from "@/components/ui/SocialIcons";
-import { formattedAddress, site } from "@/data/site";
+import { formattedAddress, hoursByRange, site } from "@/data/site";
 import { categoryLabels } from "@/data/menu";
 import { waCustomLink } from "@/lib/whatsapp";
 import { Container } from "@/components/ui/Container";
@@ -131,9 +131,11 @@ export function Footer() {
                   aria-hidden
                 />
                 <span className="text-stone-400">
-                  Setiap hari 10.00&ndash;22.00 WIB
-                  <br />
-                  Jumat &amp; Sabtu sampai 23.00 WIB
+                  {hoursByRange.map((group) => (
+                    <span key={group.range} className="block">
+                      {group.days.join(", ")} {group.range} WIB
+                    </span>
+                  ))}
                 </span>
               </li>
               <li className="flex gap-3">

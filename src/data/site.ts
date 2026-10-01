@@ -42,6 +42,29 @@ export const site = {
 
 export type Site = typeof site;
 
+/** "10.00" -> "10.00", dipisah dengan en-dash supaya tidak dibaca negatif. */
+const formatHour = (value: string) => value.replace(":", ".");
+
+/**
+ * Jam buka dikelompokkan per rentang, bukan ditulis manual per tempat.
+ * Footer, halaman kontak, dan drawer navbar sebelumnya punya tiga versi
+ * berbeda yang semuanya tidak cocok dengan `site.hours` di atas:Sabtu dan
+ * Minggu dibuka 09.00, Jumat tutup 23.00. Sekarang semuanya turun dari
+ * satu sumber.
+ */
+export const hoursByRange = site.hours.reduce<
+  { range: string; days: string[] }[]
+>((groups, { day, open, close }) => {
+  const range = `${formatHour(open)}\u2013${formatHour(close)}`;
+  const current = groups[groups.length - 1];
+  if (current && current.range === range) {
+    current.days.push(day);
+  } else {
+    groups.push({ range, days: [day] });
+  }
+  return groups;
+}, []);
+
 export const formattedAddress = `${site.address.street}, ${site.address.district}, ${site.address.city}, ${site.address.province} ${site.address.postalCode}`;
 
 export const mapsDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${site.coordinates.latitude},${site.coordinates.longitude}`;

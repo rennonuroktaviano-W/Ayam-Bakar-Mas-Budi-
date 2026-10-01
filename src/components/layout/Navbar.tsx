@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, Phone, X } from "lucide-react";
 import { navLinks, isActivePath } from "@/lib/nav";
 import { waCustomLink } from "@/lib/whatsapp";
-import { site } from "@/data/site";
+import { hoursByRange, site } from "@/data/site";
 import { Logo } from "./Logo";
 
 export function Navbar() {
@@ -183,7 +183,8 @@ export function Navbar() {
               Pesan via WhatsApp
             </a>
             <p className="text-center text-xs text-stone-500">
-              {site.phoneDisplay} · Buka 10.00&ndash;23.00 WIB
+              {site.phoneDisplay} · {hoursByRange[0].days.join(", ")}{" "}
+              {hoursByRange[0].range} WIB
             </p>
           </div>
         </div>
