@@ -1,14 +1,20 @@
+"use client";
+
 import Image from "next/image";
 import { Check, MessageCircle, Truck } from "lucide-react";
 import { promoPaket } from "@/data/menu";
 import { formatRupiah, waMenuLink } from "@/lib/whatsapp";
+import { useCarousel } from "@/lib/useCarousel";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
+import { CarouselArrows } from "@/components/ui/CarouselArrows";
 
 type PromoItem = (typeof promoPaket)[number];
 
 export function Promo() {
+  const promo = useCarousel<HTMLDivElement>();
+
   return (
     <section
       id="promo"
@@ -28,8 +34,24 @@ export function Promo() {
           tone="dark"
         />
 
+        <CarouselArrows
+          overflow={promo.overflow}
+          atStart={promo.atStart}
+          atEnd={promo.atEnd}
+          onPrev={promo.prev}
+          onNext={promo.next}
+          controls="promo-rail"
+          label="paket promo"
+          tone="dark"
+          className="mb-3"
+        />
+
         {/* Mobile: scroll-snap carousel so the section is one card tall, not three. */}
-        <div className="snap-x-rail snap-x-fade -mx-4 flex gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:hidden">
+        <div
+          id="promo-rail"
+          ref={promo.ref}
+          className="snap-x-rail snap-x-fade -mx-4 flex gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:hidden"
+        >
           {promoPaket.map((promo, index) => (
             <div key={promo.id} className="snap-item w-[84%] shrink-0">
               <PromoCard promo={promo} index={index} />

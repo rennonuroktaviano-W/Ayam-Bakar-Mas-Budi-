@@ -1,10 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Flame, MessageCircle } from "lucide-react";
 import { formatRupiah, waMenuLink } from "@/lib/whatsapp";
+import { useCarousel } from "@/lib/useCarousel";
 import { badgeLabels } from "@/data/menu";
 import type { MenuBadge, MenuItem } from "@/data/menu";
 import { Badge } from "@/components/ui/Badge";
+import { CarouselArrows } from "@/components/ui/CarouselArrows";
 
 const badgeTone: Record<MenuBadge, "orange" | "brick" | "honey"> = {
   terlaris: "orange",
@@ -101,10 +105,27 @@ export function FeaturedMenuRail({
 }: {
   items: MenuItem[];
 }) {
+  const rail = useCarousel<HTMLDivElement>();
+
   return (
     <>
+      <CarouselArrows
+        overflow={rail.overflow}
+        atStart={rail.atStart}
+        atEnd={rail.atEnd}
+        onPrev={rail.prev}
+        onNext={rail.next}
+        controls="menu-favorit-rail"
+        label="menu"
+        className="mb-3"
+      />
+
       {/* Mobile: native scroll-snap carousel */}
-      <div className="snap-x-rail snap-x-fade -mx-4 flex gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:hidden">
+      <div
+        id="menu-favorit-rail"
+        ref={rail.ref}
+        className="snap-x-rail snap-x-fade -mx-4 flex gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:hidden"
+      >
         {items.map((item) => (
           <div key={item.id} className="snap-item w-[82%] shrink-0">
             <MenuCard item={item} />

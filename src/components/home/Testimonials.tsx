@@ -1,9 +1,15 @@
+"use client";
+
 import { Quote, Star } from "lucide-react";
 import { testimonials } from "@/data/testimonials";
+import { useCarousel } from "@/lib/useCarousel";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { CarouselArrows } from "@/components/ui/CarouselArrows";
 
 export function Testimonials() {
+  const reviews = useCarousel<HTMLUListElement>();
+
   return (
     <section
       id="testimoni"
@@ -17,8 +23,23 @@ export function Testimonials() {
       />
 
       <Container>
+        <CarouselArrows
+          overflow={reviews.overflow}
+          atStart={reviews.atStart}
+          atEnd={reviews.atEnd}
+          onPrev={reviews.prev}
+          onNext={reviews.next}
+          controls="testimoni-rail"
+          label="testimoni"
+          className="mb-3"
+        />
+
         {/* Mobile: scroll-snap carousel */}
-        <ul className="snap-x-rail snap-x-fade -mx-4 flex gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:hidden">
+        <ul
+          id="testimoni-rail"
+          ref={reviews.ref}
+          className="snap-x-rail snap-x-fade -mx-4 flex gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:hidden"
+        >
           {testimonials.map((testimonial) => (
             <li
               key={testimonial.id}

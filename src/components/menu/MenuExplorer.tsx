@@ -9,12 +9,15 @@ import {
   type MenuCategory,
 } from "@/data/menu";
 import { MenuCard } from "./MenuCard";
+import { useCarousel } from "@/lib/useCarousel";
+import { CarouselArrows } from "@/components/ui/CarouselArrows";
 
 type Filter = MenuCategory | "semua";
 
 export function MenuExplorer({ initialCategory = "semua" }: { initialCategory?: Filter }) {
   const [category, setCategory] = useState<Filter>(initialCategory);
   const [query, setQuery] = useState("");
+  const chips = useCarousel<HTMLDivElement>();
 
   const results = useMemo(() => {
     const normalized = query.trim().toLowerCase();
@@ -71,7 +74,20 @@ export function MenuExplorer({ initialCategory = "semua" }: { initialCategory?: 
           ) : null}
         </div>
 
+        <CarouselArrows
+          overflow={chips.overflow}
+          atStart={chips.atStart}
+          atEnd={chips.atEnd}
+          onPrev={chips.prev}
+          onNext={chips.next}
+          controls="filter-kategori-rail"
+          label="kategori"
+          className="mb-1"
+        />
+
         <div
+          id="filter-kategori-rail"
+          ref={chips.ref}
           role="group"
           aria-label="Filter kategori menu"
           className="snap-x-rail snap-x-fade -mx-4 flex gap-2 overflow-x-auto px-4 pt-0.5 pb-2 sm:mx-0 sm:flex-wrap sm:px-0"
