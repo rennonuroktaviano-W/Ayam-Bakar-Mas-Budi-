@@ -62,7 +62,7 @@ export default async function MenuPage({
               href={waCustomLink("Halo, saya mau lihat daftar menu terbaru.")}
               variant="secondary"
             >
-              Tanya Menu Hari Ini
+              Tanya Menu
             </ExternalButtonLink>
           </div>
         </Container>

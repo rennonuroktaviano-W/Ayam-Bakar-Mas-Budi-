@@ -8,7 +8,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "Tentang Kami",
   description:
-    "Kisah Ayam Bakar Mas Budi: dari panggangan arang kecil di tahun 2011 jadi warung ayam bakar favorit di Bandung. Bumbu rahasia, arang kayu keras, bahan segar setiap hari.",
+    "Kisah Ayam Bakar Mas Budi: dari panggangan arang di halaman rumah tahun 2011 sampai warung saat ini. Bumbu racikan sendiri, arang kayu keras, bahan segar setiap hari.",
   alternates: { canonical: "/tentang" },
   openGraph: {
     title: "Tentang Kami",
@@ -54,19 +54,11 @@ export default function TentangPage() {
               </h2>
               <p>
                 Mas Budi memulai usaha ini dari panggangan arang sederhana di
-                halaman rumah. Setiap sore dia membakar lima sampai sepuluh
-                ayam untuk tetangga, dan hampir selalu sold out sebelum pukul
-                sembilan malam.
+                halaman rumah, untuk tetangga sendiri.
               </p>
               <p>
-                Pelanggan pertama yang sering datang adalah Drivers ojek online
-                yang cari makan murah tapi tetap hangat. Dari sana nama kami
-                mulai dikenal dan pesanan mulai berdatangan dari luar daerah.
-              </p>
-              <p>
-                Sampai hari ini, cara masaknya tidak banyak berubah. Yang
-                berubah hanya jumlah ayam, tambahan menu, dan tempat yang lebih
-                luas untuk menampung pelanggan.
+                Dari sana pesanan mulai bertambah. Tempatnya sekarang lebih
+                luas, tapi cara masaknya tetap sama.
               </p>
             </div>
           </div>

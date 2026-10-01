@@ -28,22 +28,21 @@ export function Hero() {
           <div>
             <Badge tone="honey" className="mb-5">
               <Star className="mr-1 h-3 w-3 fill-current" aria-hidden />
-              Legendary sejak 2011
+              Buka sejak 2011
             </Badge>
 
             <h1
               id="hero-title"
               className="font-display text-[clamp(2.25rem,7vw,4rem)] leading-[1.08] font-bold text-white text-balance"
             >
-              Ayam Bakar Juara,{" "}
-              <span className="text-api-honey">Bumbu Meresap</span>{" "}
-              Sampai Tulang
+              Ayam Bakar,{" "}
+              <span className="text-api-honey">Bumbu Racikan</span>{" "}
+              Sendiri
             </h1>
 
             <p className="mt-5 max-w-xl text-base leading-relaxed text-stone-300 text-pretty sm:text-lg">
-              Bakar arang kayu keras, marinasi 6 jam dengan bumbu racikan
-              sendiri. Tidak pakai MSG berlebihan, tidak pakai pemanis
-              buatan, yang ada cuma ayam juicy dan sambal yang bikin nagih.
+              Bakar di atas arang kayu keras, marinasi 6 jam dengan bumbu
+              racikan sendiri.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -61,8 +60,7 @@ export function Hero() {
                 Pesan via WhatsApp
               </ExternalButtonLink>
             </div>
-
-            </div>
+          </div>
 
           <div className="relative">
             <div className="relative mx-auto aspect-4/3 w-full max-w-lg overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-black/40 sm:rounded-4xl">

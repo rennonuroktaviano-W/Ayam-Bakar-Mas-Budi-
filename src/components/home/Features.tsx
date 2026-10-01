@@ -14,8 +14,8 @@ export function Features() {
     >
       <SectionHeading
         eyebrow="Keunggulan Kami"
-        title="Kenapa Orang Selalu Kembali?"
-        description="Bukan cuma rasa, tapi juga cara kami memasak tetap konsisten sejak 2011."
+        title="Cara Kami Memasak"
+        description="Empat hal yang kami jaga di setiap ayam bakar."
       />
       <Container>
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

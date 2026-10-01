@@ -1,6 +1,6 @@
 export type MenuCategory = "ayam-bakar" | "paket" | "lauk" | "minuman" | "dessert";
 
-export type MenuBadge = "terlaris" | "pedas" | "baru";
+export type MenuBadge = "pedas" | "baru";
 
 export type MenuItem = {
   id: string;
@@ -36,7 +36,6 @@ export const categoryLabels: Record<MenuCategory, string> = {
 };
 
 export const badgeLabels: Record<MenuBadge, string> = {
-  terlaris: "Terlaris",
   pedas: "Pedas",
   baru: "Baru",
 };
@@ -50,18 +49,17 @@ export const menu: MenuItem[] = [
     price: 28000,
     category: "ayam-bakar",
     image: "/images/menu/ayam-bakar-madu.webp",
-    badges: ["terlaris"],
     featured: true,
   },
   {
     id: "ayam-bakar-pedas-manis",
     name: "Ayam Bakar Pedas Manis",
     description:
-      "Racikan manis-pedas khas Mas Budi dengan tiga level kepedasan. Wajib dicoba kalau Anda suka sambal.",
+      "Racikan manis-pedas khas Mas Budi dengan tiga level kepedasan.",
     price: 30000,
     category: "ayam-bakar",
     image: "/images/menu/ayam-bakar-pedas-manis.webp",
-    badges: ["pedas", "terlaris"],
+    badges: ["pedas"],
     featured: true,
   },
   {
@@ -72,7 +70,6 @@ export const menu: MenuItem[] = [
     price: 32000,
     category: "ayam-bakar",
     image: "/images/menu/ayam-bakar-taliwang.webp",
-    badges: [],
     featured: true,
   },
   {
@@ -83,7 +80,6 @@ export const menu: MenuItem[] = [
     price: 27000,
     category: "ayam-bakar",
     image: "/images/menu/ayam-bakar-kecap.webp",
-    badges: [],
     featured: true,
   },
   {
@@ -94,7 +90,6 @@ export const menu: MenuItem[] = [
     price: 35000,
     category: "paket",
     image: "/images/menu/paket-hemat-1.webp",
-    badges: ["terlaris"],
     featured: true,
   },
   {
@@ -105,28 +100,25 @@ export const menu: MenuItem[] = [
     price: 189000,
     category: "paket",
     image: "/images/menu/paket-keluarga.webp",
-    badges: ["terlaris"],
     featured: true,
   },
   {
     id: "paket-berdua",
     name: "Paket Berdua",
     description:
-      "2 ayam bakar, 2 nasi, lalapan, dan 2 minuman. Paling dicari pasangan yang makan santai sore.",
+      "2 ayam bakar, 2 nasi, lalapan, dan 2 minuman.",
     price: 89000,
     category: "paket",
     image: "/images/menu/paket-berdua.webp",
-    badges: [],
   },
   {
     id: "tahu-tempe-bakar",
     name: "Tahu Tempe Bakar",
     description:
-      "Tahu dan tempe crispy dengan saus kacang dan kecap. Renyah di luar, lembut di dalam, dan gurihnya nagih.",
+      "Tahu dan tempe crispy dengan saus kacang dan kecap. Renyah di luar, lembut di dalam.",
     price: 18000,
     category: "lauk",
     image: "/images/menu/tahu-tempe-bakar.webp",
-    badges: [],
   },
   {
     id: "lalapan-sambal",
@@ -142,11 +134,10 @@ export const menu: MenuItem[] = [
     id: "terong-bakar",
     name: "Terong Bakar",
     description:
-      "Terong bakar dengan kecap dan bumbu rahasia yang manis. Cocok buat nambah lauk saat makan bersama.",
+      "Terong bakar dengan kecap dan bumbu yang manis. Cocok buat nambah lauk saat makan bersama.",
     price: 15000,
     category: "lauk",
     image: "/images/menu/terong-bakar.webp",
-    badges: [],
   },
   {
     id: "es-teh-manis",
@@ -156,7 +147,6 @@ export const menu: MenuItem[] = [
     price: 8000,
     category: "minuman",
     image: "/images/menu/es-teh-manis.webp",
-    badges: [],
   },
   {
     id: "es-jeruk",
@@ -166,13 +156,12 @@ export const menu: MenuItem[] = [
     price: 12000,
     category: "minuman",
     image: "/images/menu/es-jeruk.webp",
-    badges: [],
   },
   {
     id: "jus-alpukat",
     name: "Jus Alpukat",
     description:
-      "Alpukat-mentega pilihan yang kental dan manis. Favorit anak-anak dan pencinta tekstur lembut.",
+      "Alpukat-mentega pilihan yang kental dan manis.",
     price: 18000,
     category: "minuman",
     image: "/images/menu/jus-alpukat.webp",
@@ -182,21 +171,19 @@ export const menu: MenuItem[] = [
     id: "pisang-bakar-coklat-keju",
     name: "Pisang Bakar Coklat Keju",
     description:
-      "Pisang cavendish dipanggang dengan coklat dan keju cheddar. Dessert hangat favorit untuk tutup makan malam.",
+      "Pisang cavendish dipanggang dengan coklat dan keju cheddar.",
     price: 18000,
     category: "dessert",
     image: "/images/menu/pisang-bakar.webp",
-    badges: ["terlaris"],
   },
   {
     id: "es-krim-vanila",
     name: "Es Krim Vanila",
     description:
-      "Tiga scoop es krim vanila di atas roti goreng tipis. Simple, dingin, dan selalu bikin nagih.",
+      "Tiga scoop es krim vanila di atas roti goreng tipis.",
     price: 15000,
     category: "dessert",
     image: "/images/menu/es-krim.webp",
-    badges: [],
   },
 ];
 

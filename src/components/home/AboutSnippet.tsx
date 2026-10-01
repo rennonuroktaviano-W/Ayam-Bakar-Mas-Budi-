@@ -6,8 +6,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 const points = [
   "Ayam segar dari pemasok lokal setiap pagi",
   "Arang kayu keras asli, bukan kompor gas",
-  "Bumbu diracik sendiri, tanpa pengawet",
-  "Lalapan gratis untuk setiap menu ayam bakar",
+  "Bumbu diracik sendiri",
+  "Lalapan disertakan",
 ];
 
 export function AboutSnippet() {
@@ -49,21 +49,19 @@ export function AboutSnippet() {
               eyebrow="Cerita Kami"
               title={
                 <span id="about-snippet-title">
-                  Dari Warung Kecil, Jadi Legend Lokal
+                  Dari Panggangan Depan Rumah
                 </span>
               }
             />
             <div className="-mt-6 space-y-4 text-base leading-relaxed text-stone-600 text-pretty">
               <p>
                 Semuanya berawal dari satu panggangan arang di depan rumah Mas
-                Budi tahun 2011. Belum ada nama di atas papan, belum ada meja dan kursi
-                yang rapi. Cuma ayam bakar untuk tetangga sendiri.
+                Budi tahun 2011, untuk tetangga sendiri.
               </p>
               <p>
-                Sekarang Mas Budi melayani hampir 200 orang sehari, tapi cara
-                masaknya tidak berubah. Ayam tetap dimarinasi 6 jam, tetap
-                dibakar di atas arang, dan dibolak satu per satu secara manual.
-                Karena di situlah bedanya.
+                Sekarang tempatnya lebih besar, tapi cara masaknya tetap sama.
+                Ayam dimarinasi 6 jam, dibakar di atas arang, dan dibolak satu
+                per satu secara manual.
               </p>
             </div>
 

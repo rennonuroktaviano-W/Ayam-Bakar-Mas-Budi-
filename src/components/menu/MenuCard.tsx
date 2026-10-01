@@ -11,7 +11,6 @@ import { Badge } from "@/components/ui/Badge";
 import { CarouselArrows } from "@/components/ui/CarouselArrows";
 
 const badgeTone: Record<MenuBadge, "orange" | "brick" | "honey"> = {
-  terlaris: "orange",
   pedas: "brick",
   baru: "honey",
 };

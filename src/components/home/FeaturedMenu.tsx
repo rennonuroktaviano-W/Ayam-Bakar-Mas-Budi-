@@ -12,8 +12,8 @@ export function FeaturedMenu() {
     >
       <SectionHeading
         eyebrow="Menu Favorit"
-        title="Yang Paling Sering Dipesan"
-        description="Empat racuan yang jadi langganan tetap sejak pertama buka. Semua bisa dipesan langsung lewat WhatsApp."
+        title="Menu Unggulan"
+        description="Pilihan ayam bakar dan paket kami. Semua bisa dipesan langsung lewat WhatsApp."
       />
 
       <Container>

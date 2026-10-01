@@ -1,9 +1,9 @@
 export const site = {
   brand: "Ayam Bakar Mas Budi",
   shortBrand: "Mas Budi",
-  tagline: "Ayam Bakar Juara, Bumbu Meresap Sampai Tulang",
+  tagline: "Ayam Bakar Bumbu Racikan Sendiri",
   description:
-    "Ayam Bakar Mas Budi — ayam bakar dengan bumbu rahasia, dibakar langsung di atas arang. Pesan via WhatsApp, makan di tempat, dibungkus, atau nasi box catering.",
+    "Ayam Bakar Mas Budi — ayam bakar dengan bumbu racikan sendiri, dibakar langsung di atas arang. Pesan via WhatsApp, makan di tempat, dibungkus, atau nasi box catering.",
   url: "https://ayambakarmasbudi.id",
   locale: "id_ID",
   phoneDisplay: "+62 812-3456-7890",

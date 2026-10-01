@@ -7,7 +7,7 @@ export type ProcessStep = {
 export const processSteps: ProcessStep[] = [
   {
     step: "01",
-    title: "Marinasi Bumbu Rahasia",
+    title: "Marinasi",
     description:
       "Ayam segar pilihan dibersihkan, lalu direndam dalam campuran bumbu Mas Budi selama 4 sampai 6 jam agar rasa meresap sampai ke tulang.",
   },
@@ -34,9 +34,9 @@ export type Feature = {
 export const features: Feature[] = [
   {
     icon: "sparkles",
-    title: "Bumbu Rahasia",
+    title: "Bumbu Racikan Sendiri",
     description:
-      "Racikan tunggal keluarga yang tidak dibocorkan ke siapa pun. Marinasi 6 jam, bumbu sampai ke dalam daging.",
+      "Marinasi 6 jam, bumbu sampai ke dalam daging.",
   },
   {
     icon: "flame",
@@ -47,13 +47,12 @@ export const features: Feature[] = [
   {
     icon: "leaf",
     title: "Bahan Segar",
-    description:
-      "Ayam datang dari pemasok lokal setiap pagi. Tidak pernah disimpan beku lebih dari 24 jam.",
+    description: "Ayam datang dari pemasok lokal setiap pagi.",
   },
   {
     icon: "wallet",
-    title: "Harga Bersahabat",
+    title: "Harga Warung",
     description:
-      "Harga warung, porsinya tetap memenuhi. Cocok buat makan sendiri atau sekeluarga tanpa boros.",
+      "Porsinya cukup untuk makan sendiri atau sekeluarga.",
   },
 ];

@@ -110,8 +110,7 @@ export default function KontakPage() {
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-stone-300 text-pretty sm:text-lg">
             Cara tercepat untuk pesan adalah WhatsApp. Kalau mau makan di
-            tempat, mending datang langsung karena kami sering sold out
-            di jam makan siang.
+            tempat, coba datang sebelum jam makan siang.
           </p>
         </Container>
       </section>
@@ -168,8 +167,7 @@ export default function KontakPage() {
                     {formattedAddress}
                   </p>
 <p className="mt-2 text-xs text-stone-500">
-                    Parkir motor gratis di depan. Masuk dari Jl. Raya
-                    Kuliner, cabang kedua dari ujung.
+                    Masuk dari Jl. Raya Kuliner, cabang kedua dari ujung.
                   </p>
                 </div>
 

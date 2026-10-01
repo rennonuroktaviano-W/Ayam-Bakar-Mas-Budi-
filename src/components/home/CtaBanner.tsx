@@ -29,7 +29,7 @@ export function CtaBanner() {
               id="cta-title"
               className="mt-3 font-display text-3xl leading-tight font-bold text-white text-balance sm:text-4xl lg:text-5xl"
             >
-              Lapar? Pesan Sekarang!
+              Siap Pesan?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/90 text-pretty">
               Kirim pesan ke WhatsApp kami, pilih menunya, lalu kami yang

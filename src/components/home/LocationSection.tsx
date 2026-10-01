@@ -15,8 +15,8 @@ export function LocationSection() {
     >
       <SectionHeading
         eyebrow="Lokasi & Jam Buka"
-        title="Mampir, Ngabisin Saja"
-        description="Parkir motor gratis di depan. Datang saja, atau pesan dulu biar tidak kehabisan menu pas jam sibuk."
+        title="Alamat & Jam Buka"
+        description="Datang langsung, atau pesan dulu biar tidak kehabisan menu pas jam sibuk."
       />
 
       <Container>
