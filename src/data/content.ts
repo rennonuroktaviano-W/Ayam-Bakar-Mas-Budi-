@@ -24,35 +24,3 @@ export const processSteps: ProcessStep[] = [
       "Dilumuri sambal, disajikan bersama lalapan segar dan nasi hangat.",
   },
 ];
-
-export type Feature = {
-  icon: "flame" | "leaf" | "sparkles" | "wallet";
-  title: string;
-  description: string;
-};
-
-export const features: Feature[] = [
-  {
-    icon: "sparkles",
-    title: "Bumbu Racikan Sendiri",
-    description:
-      "Marinasi 6 jam, bumbu sampai ke dalam daging.",
-  },
-  {
-    icon: "flame",
-    title: "Dibakar Arang",
-    description:
-      "Arang kayu keras asli, bukan kompor gas. Dipolak berkali-kali agar ujungnya matang dan tidak gosong pahit.",
-  },
-  {
-    icon: "leaf",
-    title: "Bahan Segar",
-    description: "Ayam datang dari pemasok lokal setiap pagi.",
-  },
-  {
-    icon: "wallet",
-    title: "Harga Warung",
-    description:
-      "Porsinya cukup untuk makan sendiri atau sekeluarga.",
-  },
-];
