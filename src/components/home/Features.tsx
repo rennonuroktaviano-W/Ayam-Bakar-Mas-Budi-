@@ -1,45 +1,39 @@
-import { Flame, Leaf, Sparkles, Wallet } from "lucide-react";
-import { features } from "@/data/content";
+import { processSteps } from "@/data/content";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-
-const iconMap = { sparkles: Sparkles, flame: Flame, leaf: Leaf, wallet: Wallet };
 
 export function Features() {
   return (
     <section
-      id="keunggulan"
+      id="proses"
       className="scroll-mt-24 bg-white py-12 sm:py-16"
-      aria-labelledby="keunggulan-title"
+      aria-labelledby="proses-title"
     >
       <SectionHeading
-        eyebrow="Keunggulan Kami"
-        title="Cara Kami Memasak"
-        description="Empat hal yang kami jaga di setiap ayam bakar."
+        eyebrow="Proses Memasak"
+        title="Tiga Langkah, dari Marinasi sampai Sajian"
+        description="Ayam dimarinasi, dibakar di atas arang, lalu disajikan dengan lalapan dan nasi."
       />
       <Container>
-        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {features.map((feature, index) => {
-            const Icon = iconMap[feature.icon];
-            return (
-              <li
-                key={feature.title}
-                className="reveal flex flex-col rounded-2xl border border-api-charcoal/5 bg-api-cream/70 p-5 transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-api-orange/15 sm:p-6"
-                style={{ animationDelay: `${index * 0.08}s` }}
-              >
-                <span className="flex h-13 w-13 items-center justify-center rounded-2xl bg-api-orange/10 text-api-orange ring-1 ring-api-orange/20">
-                  <Icon className="h-6 w-6" aria-hidden />
-                </span>
-                <h3 className="mt-5 font-display text-xl font-bold text-api-charcoal">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 leading-relaxed text-stone-600">
-                  {feature.description}
-                </p>
-              </li>
-            );
-          })}
-        </ul>
+        <ol className="grid gap-5 md:grid-cols-3">
+          {processSteps.map((step, index) => (
+            <li
+              key={step.step}
+              className="reveal relative flex flex-col rounded-3xl border border-api-charcoal/5 bg-api-cream/70 p-5 transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-api-orange/15 sm:p-7"
+              style={{ animationDelay: `${index * 0.08}s` }}
+            >
+              <span className="font-display text-4xl font-bold text-api-orange/25">
+                {step.step}
+              </span>
+              <h3 className="mt-2 font-display text-xl font-bold text-api-charcoal">
+                {step.title}
+              </h3>
+              <p className="mt-2 leading-relaxed text-stone-600">
+                {step.description}
+              </p>
+            </li>
+          ))}
+        </ol>
       </Container>
     </section>
   );

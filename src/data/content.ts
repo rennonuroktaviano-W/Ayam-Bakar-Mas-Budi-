@@ -9,19 +9,19 @@ export const processSteps: ProcessStep[] = [
     step: "01",
     title: "Marinasi",
     description:
-      "Ayam segar pilihan dibersihkan, lalu direndam dalam campuran bumbu Mas Budi selama 4 sampai 6 jam agar rasa meresap sampai ke tulang.",
+      "Ayam direndam dalam bumbu racikan sendiri selama 4 sampai 6 jam.",
   },
   {
     step: "02",
     title: "Bakar di Atas Arang",
     description:
-      "Arang dinyalakan dari kayu keras, ayam dibakar perlahan sambil dibolak berkali-kali agar matang merata.",
+      "Arang kayu keras, ayam dibakar perlahan sambil dibolak agar matang merata.",
   },
   {
     step: "03",
     title: "Sajikan Hangat",
     description:
-      "Ayam dilumuri sambal, ditaburi wijen dan disajikan bersama lalapan segar serta nasi hangat yang baru matang.",
+      "Dilumuri sambal, disajikan bersama lalapan segar dan nasi hangat.",
   },
 ];
 
