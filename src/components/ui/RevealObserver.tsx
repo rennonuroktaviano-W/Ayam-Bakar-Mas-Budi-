@@ -11,7 +11,8 @@ const REVEAL_SELECTOR = ".reveal";
  *
  * Two things this must survive:
  * 1. No JavaScript / slow JS -> content must stay visible (handled in CSS via
- *    the `html.js` gate, this observer is not what makes content visible).
+ *    the `@media (scripting: enabled)` gate, this observer is not what makes
+ *    content visible).
  * 2. Client-side navigation -> `layout.tsx` is not remounted, so this effect
  *    has to re-run on every route change. Otherwise newly mounted `.reveal`
  *    elements are never observed and stay invisible.

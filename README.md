@@ -79,8 +79,11 @@ dan hero, `16/10` untuk banner promo dan peta.
 - Tanpa library carousel; carousel mobile pakai scroll-snap native.
 - Reveal-on-scroll pakai IntersectionObserver + CSS. Konten **tidak pernah**
   bergantung pada animasi untuk terlihat: state default-nya visible, dan
-  hidden start hanya aktif kalau `html.js` ada (di-set inline script sebelum
-  paint) serta `prefers-reduced-motion` tidak aktif.
+  hidden start di-gate `@media (scripting: enabled)` — bukan class dari inline
+  script, karena mengubah `<html>` sebelum hydration bikin React melihat
+  `className` yang beda dari hasil server (hydration error), dan inline script
+  butuh nonce/hash kalau nanti pakai CSP strict. `prefers-reduced-motion`
+  menimpanya kembali ke visible.
 - Peta Google dimuat setelah diklik (click-to-load), jadi tidak ada kotak
   kosong kalau `maps.googleapis.com` tidak bisa diakses.
 - Tombol WhatsApp mobile sticky di bawah, body diberi padding bawah agar tidak

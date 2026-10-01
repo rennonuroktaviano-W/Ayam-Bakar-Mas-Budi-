@@ -88,28 +88,37 @@ body {
 }
 
 /* Reveal-on-scroll: motion only, never visibility.
-   Default state is fully visible so content still shows without JavaScript,
-   with JS blocked, or before hydration. The `html.js` class is set by an inline
-   script in layout.tsx, which is what opts the page into the hidden start.
-   These rules must stay BEFORE the prefers-reduced-motion block below, so that
-   block can win the cascade and keep revealed content visible. */
+   Default state is fully visible, so content always shows without JavaScript,
+   before hydration, or if the CSS below is never applied.
+
+   The hidden start state is gated on `@media (scripting: enabled)` rather than
+   a class set by an inline <script> on <html>. Two reasons:
+   - Mutating <html> before hydration makes React see a different className on
+     the client than the server rendered, which logs a hydration error.
+   - An inline script needs a nonce/hash to survive a strict CSP.
+   `scripting` is a real media feature (Chrome 120+, Safari 17+, Firefox 113+).
+   Where it is unsupported the query simply does not match, so content stays
+   visible and only the animation is lost. Degrading to plain static content is
+   the correct failure mode here. */
 .reveal {
   opacity: 1;
 }
 
-html.js .reveal {
-  opacity: 0;
-  transform: translateY(1.25rem);
+@media (scripting: enabled) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+
+  .reveal[data-visible="true"] {
+    animation: var(--animate-fade-up);
+  }
 }
 
-html.js .reveal[data-visible="true"] {
-  animation: var(--animate-fade-up);
-}
-
-/* Last, so it overrides the hidden start state above for users who asked for
-   less motion. Content must never depend on an animation to be seen. */
+/* Must stay last so it wins the cascade and reveals content for anyone who
+   asked for less motion. Content must never depend on an animation to be seen. */
 @media (prefers-reduced-motion: reduce) {
-  html.js .reveal {
+  .reveal {
     opacity: 1;
     transform: none;
   }
