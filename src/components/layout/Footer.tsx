@@ -32,9 +32,9 @@ export function Footer() {
 
   return (
     <footer className="bg-api-charcoal text-stone-300">
-      <Container className="py-14 sm:py-16">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
-          <div className="lg:col-span-4">
+      <Container className="py-12 sm:py-16">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-10 lg:grid-cols-12">
+          <div className="col-span-2 lg:col-span-4">
             <Logo tone="light" />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-stone-400">
               {site.tagline}. Sejak 2011 kami bakar di atas arang dengan bumbu
@@ -81,12 +81,12 @@ export function Footer() {
             <h2 className="font-display text-base font-bold text-white">
               Menu
             </h2>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-3 space-y-1 sm:mt-4 sm:space-y-2.5">
               {menuLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="inline-flex min-h-8 items-center text-sm text-stone-400 transition hover:text-api-honey"
+                    className="inline-flex min-h-11 items-center text-sm text-stone-400 transition hover:text-api-honey"
                   >
                     {link.label}
                   </Link>
@@ -99,12 +99,12 @@ export function Footer() {
             <h2 className="font-display text-base font-bold text-white">
               Informasi
             </h2>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-3 space-y-1 sm:mt-4 sm:space-y-2.5">
               {aboutLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="inline-flex min-h-8 items-center text-sm text-stone-400 transition hover:text-api-honey"
+                    className="inline-flex min-h-11 items-center text-sm text-stone-400 transition hover:text-api-honey"
                   >
                     {link.label}
                   </Link>
@@ -113,11 +113,11 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div className="lg:col-span-3">
+          <div className="col-span-2 lg:col-span-3">
             <h2 className="font-display text-base font-bold text-white">
               Kunjungi Kami
             </h2>
-            <ul className="mt-4 space-y-3 text-sm">
+            <ul className="mt-3 space-y-2 text-sm sm:mt-4 sm:space-y-3">
               <li className="flex gap-3">
                 <MapPin
                   className="mt-0.5 h-4 w-4 shrink-0 text-api-orange"
@@ -145,7 +145,7 @@ export function Footer() {
                   href={waCustomLink("Halo, saya mau bertanya soal menu.")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="min-h-8 text-stone-400 transition hover:text-api-honey"
+                  className="flex min-h-11 items-center text-stone-400 transition hover:text-api-honey"
                 >
                   {site.phoneDisplay}
                 </a>
@@ -157,12 +157,12 @@ export function Footer() {
               width={96}
               height={96}
               aria-hidden
-              className="mt-6 h-20 w-20 rounded-2xl opacity-40"
+              className="mt-6 hidden h-20 w-20 rounded-2xl opacity-40 sm:block"
             />
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-stone-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-stone-500 sm:mt-12 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
           <p>
             &copy; {year} {site.brand}. Semua hak dilindungi.
           </p>

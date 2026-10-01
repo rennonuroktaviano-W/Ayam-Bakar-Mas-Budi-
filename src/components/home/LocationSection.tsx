@@ -10,7 +10,7 @@ export function LocationSection() {
   return (
     <section
       id="lokasi"
-      className="bg-white py-14 sm:py-16 lg:py-20"
+      className="bg-white py-12 sm:py-16 lg:py-20"
       aria-labelledby="lokasi-title"
     >
       <SectionHeading
@@ -22,7 +22,7 @@ export function LocationSection() {
       <Container>
         <div className="grid gap-6 lg:grid-cols-5 lg:gap-8">
           <div className="order-2 lg:order-1 lg:col-span-2">
-            <div className="flex h-full flex-col gap-5 rounded-3xl border border-api-charcoal/10 bg-api-cream/60 p-6 sm:p-7">
+            <div className="flex h-full flex-col gap-5 rounded-3xl border border-api-charcoal/10 bg-api-cream/60 p-5 sm:p-7">
               <div>
                 <h3 className="font-display text-lg font-bold text-api-charcoal">
                   Alamat

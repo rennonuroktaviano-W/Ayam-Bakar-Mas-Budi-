@@ -96,19 +96,19 @@ export function Hero() {
               />
 
               {/* Floating price card */}
-              <div className="absolute right-4 bottom-4 left-4 rounded-2xl bg-white/95 p-4 backdrop-blur sm:right-auto sm:w-64">
+              <div className="absolute right-3 bottom-3 left-3 rounded-2xl bg-white/95 p-3.5 backdrop-blur sm:right-4 sm:bottom-4 sm:left-auto sm:w-64 sm:p-4">
                 <p className="text-xs font-bold uppercase tracking-wide text-api-orange">
                   Paket keluarga
                 </p>
                 <p className="mt-1 font-display text-xl font-bold text-api-charcoal">
                   Rp189.000
                 </p>
-                <p className="mt-0.5 text-xs text-stone-600">
+                <p className="mt-0.5 text-xs leading-relaxed text-stone-600">
                   4 ayam bakar + 2 nasi + lalapan, buat 3-4 orang
                 </p>
                 <Link
                   href="/menu?kategori=paket"
-                  className="mt-2 inline-flex min-h-8 items-center gap-1 text-xs font-semibold text-api-orange underline-offset-4 hover:underline"
+                  className="mt-1 inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-api-orange underline-offset-4 hover:underline"
                 >
                   Lihat paket lainnya
                   <ArrowRight className="h-3.5 w-3.5" aria-hidden />

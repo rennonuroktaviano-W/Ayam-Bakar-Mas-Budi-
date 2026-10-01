@@ -57,14 +57,14 @@ export function MenuExplorer({ initialCategory = "semua" }: { initialCategory?: 
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Cari ayam bakar, paket, es teh..."
-            className="min-h-13 w-full rounded-2xl border border-api-charcoal/10 bg-white pr-12 pl-12 text-base text-api-charcoal placeholder:text-stone-400 focus:border-api-orange focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-api-honey"
+            className="min-h-13 w-full rounded-2xl border border-api-charcoal/10 bg-white pr-14 pl-12 text-base text-api-charcoal placeholder:text-stone-400 focus:border-api-orange focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-api-honey"
           />
           {query ? (
             <button
               type="button"
               onClick={() => setQuery("")}
               aria-label="Bersihkan pencarian"
-              className="absolute top-1/2 right-3 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full text-stone-400 transition hover:bg-stone-100 hover:text-stone-700"
+              className="absolute top-1/2 right-1.5 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full text-stone-400 transition hover:bg-stone-100 hover:text-stone-700"
             >
               <X className="h-4 w-4" aria-hidden />
             </button>
@@ -74,7 +74,7 @@ export function MenuExplorer({ initialCategory = "semua" }: { initialCategory?: 
         <div
           role="group"
           aria-label="Filter kategori menu"
-          className="snap-x-rail -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0"
+          className="snap-x-rail snap-x-fade -mx-4 flex gap-2 overflow-x-auto px-4 pt-0.5 pb-2 sm:mx-0 sm:flex-wrap sm:px-0"
         >
           {categories.map((item) => {
             const active = category === item.id;
@@ -84,7 +84,7 @@ export function MenuExplorer({ initialCategory = "semua" }: { initialCategory?: 
                 type="button"
                 onClick={() => setCategory(item.id)}
                 aria-pressed={active}
-                className={`snap-item inline-flex min-h-11 shrink-0 items-center rounded-full px-5 text-sm font-semibold transition ${
+                className={`snap-item inline-flex min-h-11 shrink-0 items-center rounded-full px-4 text-sm font-semibold transition sm:px-5 ${
                   active
                     ? "bg-api-charcoal text-white shadow-md shadow-api-charcoal/20"
                     : "bg-white text-stone-600 ring-1 ring-api-charcoal/10 hover:text-api-orange hover:ring-api-orange/40"
@@ -95,6 +95,11 @@ export function MenuExplorer({ initialCategory = "semua" }: { initialCategory?: 
             );
           })}
         </div>
+
+        <p className="text-sm text-stone-600">
+          {results.length} menu ditemukan
+          {category !== "semua" ? ` di ${categoryLabels[category]}` : ""}
+        </p>
       </div>
 
       <p aria-live="polite" className="sr-only">
@@ -102,7 +107,7 @@ export function MenuExplorer({ initialCategory = "semua" }: { initialCategory?: 
       </p>
 
       {results.length > 0 ? (
-        <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
           {results.map((item) => (
             <li key={item.id} id={item.id} className="scroll-mt-24">
               <MenuCard item={item} />

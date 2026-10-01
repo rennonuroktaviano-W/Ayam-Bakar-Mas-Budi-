@@ -7,11 +7,11 @@ import { ExternalButtonLink } from "@/components/ui/Button";
 export function CtaBanner() {
   return (
     <section
-      className="bg-api-cream pb-14 sm:pb-16 lg:pb-20"
+      className="bg-api-cream pb-12 sm:pb-16 lg:pb-20"
       aria-labelledby="cta-title"
     >
       <Container>
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-api-orange to-api-brick px-6 py-12 text-center shadow-xl shadow-api-orange/25 sm:px-12 sm:py-14">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-api-orange to-api-brick px-5 py-10 text-center shadow-xl shadow-api-orange/25 sm:px-12 sm:py-14">
           <div
             aria-hidden
             className="pointer-events-none absolute -top-16 -right-16 h-56 w-56 rounded-full bg-white/15 blur-3xl"

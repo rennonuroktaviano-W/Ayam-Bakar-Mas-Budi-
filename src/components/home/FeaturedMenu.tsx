@@ -11,7 +11,7 @@ export function FeaturedMenu() {
   return (
     <section
       id="menu-favorit"
-      className="bg-api-cream py-14 sm:py-16 lg:py-20"
+      className="bg-api-cream py-12 sm:py-16 lg:py-20"
       aria-labelledby="menu-favorit-title"
     >
       <SectionHeading

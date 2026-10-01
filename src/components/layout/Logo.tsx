@@ -25,7 +25,7 @@ export function Logo({ tone = "dark" }: { tone?: "dark" | "light" }) {
           Ayam Bakar
         </span>
         <span
-          className={`text-[0.625rem] font-semibold uppercase tracking-[0.28em] transition-colors duration-200 ${
+          className={`text-[0.6875rem] font-semibold uppercase tracking-[0.24em] transition-colors duration-200 ${
             tone === "light" ? "text-api-orange" : "text-api-orange-dark"
           }`}
         >

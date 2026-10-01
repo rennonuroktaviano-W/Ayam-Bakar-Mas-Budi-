@@ -14,7 +14,7 @@ export function AboutSnippet() {
   return (
     <section
       id="tentang-singkat"
-      className="bg-white py-14 sm:py-16 lg:py-20"
+      className="bg-white py-12 sm:py-16 lg:py-20"
       aria-labelledby="about-snippet-title"
     >
       <Container>

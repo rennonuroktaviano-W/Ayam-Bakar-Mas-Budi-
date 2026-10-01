@@ -78,7 +78,7 @@ export default function TentangPage() {
 
       <section
         id="proses"
-        className="scroll-mt-24 bg-api-cream py-14 sm:py-16 lg:py-20"
+        className="scroll-mt-24 bg-api-cream py-12 sm:py-16 lg:py-20"
         aria-labelledby="proses-title"
       >
         <Container>
@@ -102,7 +102,7 @@ export default function TentangPage() {
             {processSteps.map((step, index) => (
               <li
                 key={step.step}
-                className="reveal relative flex flex-col rounded-3xl bg-white p-6 shadow-md shadow-api-charcoal/5 sm:p-7"
+                className="reveal relative flex flex-col rounded-3xl bg-white p-5 shadow-md shadow-api-charcoal/5 sm:p-7"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <span className="font-display text-4xl font-bold text-api-orange/25">
@@ -120,7 +120,7 @@ export default function TentangPage() {
         </Container>
       </section>
 
-      <section className="bg-white py-14 sm:py-16 lg:py-20">
+      <section className="bg-white py-12 sm:py-16 lg:py-20">
         <Container>
           <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-14">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-api-orange">
@@ -137,7 +137,7 @@ export default function TentangPage() {
               return (
                 <article
                   key={value.title}
-                  className="reveal flex flex-col rounded-3xl border border-api-charcoal/10 bg-api-cream/60 p-6 sm:p-7"
+                  className="reveal flex flex-col rounded-3xl border border-api-charcoal/10 bg-api-cream/60 p-5 sm:p-7"
                   style={{ animationDelay: `${index * 0.08}s` }}
                 >
                   <div className="flex h-13 w-13 items-center justify-center rounded-2xl bg-api-orange text-white">

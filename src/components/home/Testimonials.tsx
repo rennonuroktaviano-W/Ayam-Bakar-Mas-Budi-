@@ -7,7 +7,7 @@ export function Testimonials() {
   return (
     <section
       id="testimoni"
-      className="bg-api-cream py-14 sm:py-16 lg:py-20"
+      className="bg-api-cream py-12 sm:py-16 lg:py-20"
       aria-labelledby="testimoni-title"
     >
       <SectionHeading
@@ -18,11 +18,11 @@ export function Testimonials() {
 
       <Container>
         {/* Mobile: scroll-snap carousel */}
-        <ul className="snap-x-rail -mx-4 flex gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:hidden">
+        <ul className="snap-x-rail snap-x-fade -mx-4 flex gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:hidden">
           {testimonials.map((testimonial) => (
             <li
               key={testimonial.id}
-              className="snap-item flex w-[85%] shrink-0 flex-col rounded-2xl bg-white p-6 shadow-md shadow-api-charcoal/5"
+              className="snap-item flex w-[85%] shrink-0 flex-col rounded-2xl bg-white p-5 shadow-md shadow-api-charcoal/5 sm:p-6"
             >
               <Quote
                 className="h-7 w-7 text-api-orange/30"

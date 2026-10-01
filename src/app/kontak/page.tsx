@@ -118,7 +118,7 @@ export default function KontakPage() {
 
       <section className="bg-api-cream py-12 sm:py-16">
         <Container>
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {channels.map((channel) => {
               const Icon = channel.icon;
               return (
@@ -126,7 +126,7 @@ export default function KontakPage() {
                   key={channel.title}
                   href={channel.href}
                   variant="outline"
-                  className="h-full flex-col items-start gap-3 !rounded-3xl border-api-charcoal/15 p-6 text-left hover:border-api-orange"
+                  className="h-full flex-col items-start gap-3 !rounded-3xl border-api-charcoal/15 p-5 text-left hover:border-api-orange sm:p-6"
                 >
                   <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-api-orange/10 text-api-orange">
                     <Icon className="h-6 w-6" aria-hidden />
@@ -135,7 +135,7 @@ export default function KontakPage() {
                     <span className="block text-xs font-bold uppercase tracking-wide text-stone-500">
                       {channel.title}
                     </span>
-                    <span className="mt-1 block font-display text-base font-bold text-api-charcoal">
+                    <span className="mt-1 block font-display text-base font-bold break-words text-api-charcoal">
                       {channel.value}
                     </span>
                     <span className="mt-1 block text-xs text-stone-500">

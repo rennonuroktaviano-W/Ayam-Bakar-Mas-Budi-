@@ -141,6 +141,15 @@ body {
   scroll-snap-stop: always;
 }
 
+/* Soft fade on the right edge of a horizontal rail. On a touch screen there is no
+   visible scrollbar and no wheel, so without this there is no cue at all that
+   more cards exist off-screen. The fade is wide enough that a card is never cut
+   through its content. */
+.snap-x-fade {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent);
+}
+
 /* Thin styling for the ember accent scrollbar on desktop. */
 .charcoal-scroll::-webkit-scrollbar {
   height: 6px;

@@ -9,7 +9,7 @@ export function Features() {
   return (
     <section
       id="keunggulan"
-      className="scroll-mt-24 bg-white py-14 sm:py-16"
+      className="scroll-mt-24 bg-white py-12 sm:py-16"
       aria-labelledby="keunggulan-title"
     >
       <SectionHeading
@@ -24,7 +24,7 @@ export function Features() {
             return (
               <li
                 key={feature.title}
-                className="reveal flex flex-col rounded-2xl border border-api-charcoal/5 bg-api-cream/70 p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-api-orange/15"
+                className="reveal flex flex-col rounded-2xl border border-api-charcoal/5 bg-api-cream/70 p-5 transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-api-orange/15 sm:p-6"
                 style={{ animationDelay: `${index * 0.08}s` }}
               >
                 <span className="flex h-13 w-13 items-center justify-center rounded-2xl bg-api-orange/10 text-api-orange ring-1 ring-api-orange/20">
