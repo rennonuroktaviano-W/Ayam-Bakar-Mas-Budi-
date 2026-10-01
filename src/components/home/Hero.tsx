@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, MessageCircle, Star } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink, ExternalButtonLink } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
 import { waCustomLink } from "@/lib/whatsapp";
 
 export function Hero() {
@@ -26,11 +25,6 @@ export function Hero() {
       <Container className="relative">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
-            <Badge tone="honey" className="mb-5">
-              <Star className="mr-1 h-3 w-3 fill-current" aria-hidden />
-              Buka sejak 2011
-            </Badge>
-
             <h1
               id="hero-title"
               className="font-display text-[clamp(2.25rem,7vw,4rem)] leading-[1.08] font-bold text-white text-balance"
