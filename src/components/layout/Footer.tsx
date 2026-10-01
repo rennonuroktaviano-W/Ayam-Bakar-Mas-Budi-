@@ -37,9 +37,8 @@ export function Footer() {
           <div className="col-span-2 lg:col-span-4">
             <Logo tone="light" />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-stone-400">
-              {site.tagline}. Sejak 2011 kami bakar di atas arang dengan bumbu
-              yang diracik sendiri. Makan di tempat, dibungkus, atau nasi box
-              catering.
+              {site.tagline}. Bakar di atas arang dengan bumbu yang diracik
+              sendiri. Makan di tempat, dibungkus, atau nasi box catering.
             </p>
             <ul className="mt-6 flex flex-wrap gap-2">
               <li>
@@ -167,7 +166,7 @@ export function Footer() {
           <p>
             &copy; {year} {site.brand}. Semua hak dilindungi.
           </p>
-          <p>Dibuat dengan api dan arang, bukan oven listrik.</p>
+          <p>{site.address.city}, {site.address.province}</p>
         </div>
       </Container>
     </footer>
