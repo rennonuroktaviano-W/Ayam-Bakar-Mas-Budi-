@@ -5,7 +5,6 @@ import { Hero } from "@/components/home/Hero";
 import { Features } from "@/components/home/Features";
 import { FeaturedMenu } from "@/components/home/FeaturedMenu";
 import { Promo } from "@/components/home/Promo";
-import { AboutSnippet } from "@/components/home/AboutSnippet";
 import { LocationSection } from "@/components/home/LocationSection";
 import { CtaBanner } from "@/components/home/CtaBanner";
 
@@ -77,7 +76,6 @@ export default function HomePage() {
       <Features />
       <FeaturedMenu />
       <Promo />
-      <AboutSnippet />
       <LocationSection />
       <CtaBanner />
     </>
