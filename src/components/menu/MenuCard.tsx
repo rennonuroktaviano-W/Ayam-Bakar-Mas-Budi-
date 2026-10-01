@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Flame, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { formatRupiah, waMenuLink } from "@/lib/whatsapp";
 import { useCarousel } from "@/lib/useCarousel";
 import { badgeLabels } from "@/data/menu";
@@ -88,15 +88,6 @@ export function MenuCard({
         </div>
       </div>
     </article>
-  );
-}
-
-export function MenuCardSkeletonNote() {
-  return (
-    <p className="flex items-center gap-2 text-xs text-stone-500">
-      <Flame className="h-3.5 w-3.5 text-api-orange" aria-hidden />
-      Harga placeholder, sudah bisa diganti di src/data/menu.ts
-    </p>
   );
 }
 

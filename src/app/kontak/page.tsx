@@ -23,7 +23,7 @@ import { waCustomLink } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Kontak & Lokasi",
-  description: `Alamat, jam buka, nomor WhatsApp, dan cara menuju ${site.brand} di ${site.address.city}. Pesan dine in, takeaway, atau nasi box catering.`,
+  description: `Alamat, jam buka, nomor WhatsApp, dan cara menuju ${site.brand} di ${site.address.city}. Pesan makan di tempat, dibungkus, atau nasi box catering.`,
   alternates: { canonical: "/kontak" },
   openGraph: {
     title: "Kontak & Lokasi",
@@ -167,9 +167,9 @@ export default function KontakPage() {
                   <p className="mt-2 text-sm leading-relaxed text-stone-600">
                     {formattedAddress}
                   </p>
-                  <p className="mt-2 text-xs text-stone-500">
-Parkir motor gratis di depan. Masuk dari Jl. Raya
-                  Kuliner, cabang kedua dari ujung.
+<p className="mt-2 text-xs text-stone-500">
+                    Parkir motor gratis di depan. Masuk dari Jl. Raya
+                    Kuliner, cabang kedua dari ujung.
                   </p>
                 </div>
 

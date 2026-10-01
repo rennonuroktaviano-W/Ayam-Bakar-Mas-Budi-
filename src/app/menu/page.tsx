@@ -11,7 +11,7 @@ type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 export const metadata: Metadata = {
   title: "Menu & Harga",
   description:
-    "Daftar menu lengkap Ayam Bakar Mas Budi: ayam bakar madu, pedas manis, taliwang, paket keluarga, lauk, minuman, dan dessert. Harga placeholder, pesan langsung via WhatsApp.",
+    "Daftar menu lengkap Ayam Bakar Mas Budi: ayam bakar madu, pedas manis, taliwang, paket keluarga, lauk, minuman, dan dessert. Pesan langsung via WhatsApp.",
   alternates: { canonical: "/menu" },
   openGraph: {
     title: "Menu & Harga",
@@ -54,8 +54,8 @@ export default async function MenuPage({
             Menu &amp; Harga Lengkap
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-stone-300 text-pretty sm:text-lg">
-            Semua harga masih placeholder dan bisa berubah. Tap tombol pesan di
-            tiap kartu untuk langsung order lewat WhatsApp.
+            Pilih menu di bawah, lalu tap tombol pesan di tiap kartu untuk
+            langsung order lewat WhatsApp.
           </p>
           <div className="mt-6">
             <ExternalButtonLink

@@ -3,7 +3,7 @@ export const site = {
   shortBrand: "Mas Budi",
   tagline: "Ayam Bakar Juara, Bumbu Meresap Sampai Tulang",
   description:
-    "Ayam Bakar Mas Budi — ayam bakar dengan bumbu rahasia, dibakar langsung di atas arang. Pesan via WhatsApp, dine in, takeaway, atau nasi box catering.",
+    "Ayam Bakar Mas Budi — ayam bakar dengan bumbu rahasia, dibakar langsung di atas arang. Pesan via WhatsApp, makan di tempat, dibungkus, atau nasi box catering.",
   url: "https://ayambakarmasbudi.id",
   locale: "id_ID",
   phoneDisplay: "+62 812-3456-7890",
@@ -36,11 +36,6 @@ export const site = {
     facebook: "https://facebook.com/ayambakarmasbudi",
     tiktok: "https://tiktok.com/@ayambakarmasbudi",
   },
-  stats: [
-    { value: "15+", label: "Tahun pengalaman" },
-    { value: "120+", label: "Menu pilihan" },
-    { value: "50rb+", label: "Pelanggan setia" },
-  ],
   mapsEmbedUrl:
     "https://www.google.com/maps?q=-6.8937,107.6139&hl=id&z=16&output=embed",
 } as const;

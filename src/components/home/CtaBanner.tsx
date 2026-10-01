@@ -33,8 +33,8 @@ export function CtaBanner() {
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/90 text-pretty">
               Kirim pesan ke WhatsApp kami, pilih menunya, lalu kami yang
-              siapkan. Cocok untuk makan di tempat, takeaway, sampai nasi box
-              acara.
+              siapkan. Bisa makan di tempat, dibungkus, atau pesan nasi box
+              untuk acara.
             </p>
 
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
@@ -54,7 +54,7 @@ export function CtaBanner() {
                 className="w-full border-white bg-transparent text-white hover:bg-white hover:text-api-orange sm:w-auto"
               >
                 <Phone className="h-5 w-5" aria-hidden />
-                Tanya Availability
+                Tanya Ketersediaan
               </ExternalButtonLink>
             </div>
           </div>

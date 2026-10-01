@@ -1,5 +1,5 @@
 import { Flame, Leaf, Sparkles, Wallet } from "lucide-react";
-import { features } from "@/data/testimonials";
+import { features } from "@/data/content";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 

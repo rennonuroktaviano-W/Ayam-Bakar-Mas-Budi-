@@ -6,7 +6,6 @@ import { Features } from "@/components/home/Features";
 import { FeaturedMenu } from "@/components/home/FeaturedMenu";
 import { Promo } from "@/components/home/Promo";
 import { AboutSnippet } from "@/components/home/AboutSnippet";
-import { Testimonials } from "@/components/home/Testimonials";
 import { LocationSection } from "@/components/home/LocationSection";
 import { CtaBanner } from "@/components/home/CtaBanner";
 
@@ -54,12 +53,6 @@ function jsonLd() {
       name: `Menu ${site.brand}`,
       url: `${site.url}/menu`,
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "1200",
-      bestRating: "5",
-    },
     makesOffer: menu.slice(0, 10).map((item) => ({
       "@type": "Offer",
       itemOffered: {
@@ -85,7 +78,6 @@ export default function HomePage() {
       <FeaturedMenu />
       <Promo />
       <AboutSnippet />
-      <Testimonials />
       <LocationSection />
       <CtaBanner />
     </>

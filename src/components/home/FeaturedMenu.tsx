@@ -1,11 +1,7 @@
 import { featuredMenu } from "@/data/menu";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import {
-  FeaturedMenuRail,
-  MenuCardSkeletonNote,
-  ViewAllMenuLink,
-} from "@/components/menu/MenuCard";
+import { FeaturedMenuRail, ViewAllMenuLink } from "@/components/menu/MenuCard";
 
 export function FeaturedMenu() {
   return (
@@ -23,9 +19,8 @@ export function FeaturedMenu() {
       <Container>
         <FeaturedMenuRail items={featuredMenu} />
 
-        <div className="reveal mt-8 flex flex-col items-center gap-3">
+        <div className="reveal mt-8 flex justify-center">
           <ViewAllMenuLink />
-          <MenuCardSkeletonNote />
         </div>
       </Container>
     </section>

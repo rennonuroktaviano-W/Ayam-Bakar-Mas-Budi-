@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Heart, Leaf, Target } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
-import { processSteps, values } from "@/data/testimonials";
+import { processSteps } from "@/data/content";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -18,8 +17,6 @@ export const metadata: Metadata = {
     url: "/tentang",
   },
 };
-
-const valueIcons = [Leaf, Target, Heart];
 
 export default function TentangPage() {
   return (
@@ -122,39 +119,7 @@ export default function TentangPage() {
 
       <section className="bg-white py-12 sm:py-16 lg:py-20">
         <Container>
-          <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-14">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-api-orange">
-              Nilai Kami
-            </p>
-            <h2 className="mt-3 font-display text-3xl leading-tight font-bold text-api-charcoal text-balance sm:text-4xl">
-              Kenapa Pelanggan Tetap Setia
-            </h2>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-3">
-            {values.map((value, index) => {
-              const Icon = valueIcons[index % valueIcons.length];
-              return (
-                <article
-                  key={value.title}
-                  className="reveal flex flex-col rounded-3xl border border-api-charcoal/10 bg-api-cream/60 p-5 sm:p-7"
-                  style={{ animationDelay: `${index * 0.08}s` }}
-                >
-                  <div className="flex h-13 w-13 items-center justify-center rounded-2xl bg-api-orange text-white">
-                    <Icon className="h-6 w-6" aria-hidden />
-                  </div>
-                  <h3 className="mt-5 font-display text-xl font-bold text-api-charcoal">
-                    {value.title}
-                  </h3>
-                  <p className="mt-2 leading-relaxed text-stone-600">
-                    {value.description}
-                  </p>
-                </article>
-              );
-            })}
-          </div>
-
-          <div className="mt-10 text-center">
+          <div className="text-center">
             <ButtonLink href="/menu" size="lg">
               Lihat Menu Sekarang
             </ButtonLink>

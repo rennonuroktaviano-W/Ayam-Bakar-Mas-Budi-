@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MessageCircle, Star } from "lucide-react";
-import { site } from "@/data/site";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink, ExternalButtonLink } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -63,22 +62,7 @@ export function Hero() {
               </ExternalButtonLink>
             </div>
 
-            <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-white/10 pt-6">
-              {site.stats.map((stat) => (
-                <div key={stat.label}>
-                  <dt className="sr-only">{stat.label}</dt>
-                  <dd>
-                    <span className="block font-display text-2xl font-bold text-api-honey sm:text-3xl">
-                      {stat.value}
-                    </span>
-                    <span className="mt-0.5 block text-xs text-stone-400 sm:text-sm">
-                      {stat.label}
-                    </span>
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
+            </div>
 
           <div className="relative">
             <div className="relative mx-auto aspect-4/3 w-full max-w-lg overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-black/40 sm:rounded-4xl">

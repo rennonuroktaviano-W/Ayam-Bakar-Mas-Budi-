@@ -38,7 +38,8 @@ export function Footer() {
             <Logo tone="light" />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-stone-400">
               {site.tagline}. Sejak 2011 kami bakar di atas arang dengan bumbu
-              yang diracik sendiri. Dine in, takeaway, sampai nasi box catering.
+              yang diracik sendiri. Makan di tempat, dibungkus, atau nasi box
+              catering.
             </p>
             <ul className="mt-6 flex flex-wrap gap-2">
               <li>

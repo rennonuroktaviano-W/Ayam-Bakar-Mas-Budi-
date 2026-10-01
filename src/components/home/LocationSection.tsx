@@ -72,7 +72,7 @@ export function LocationSection() {
                   className="flex-1"
                 >
                   <Phone className="h-4 w-4" aria-hidden />
-                  Pesan Dine In
+                  Pesan Makan Di Tempat
                 </ExternalButtonLink>
               </div>
             </div>
