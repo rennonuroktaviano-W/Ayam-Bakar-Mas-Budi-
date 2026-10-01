@@ -18,13 +18,17 @@ export function Logo({ tone = "dark" }: { tone?: "dark" | "light" }) {
       />
       <span className="flex flex-col leading-none">
         <span
-          className={`font-display text-base font-bold tracking-tight sm:text-lg ${
+          className={`font-display text-base font-bold tracking-tight transition-colors duration-200 sm:text-lg ${
             tone === "light" ? "text-white" : "text-api-charcoal"
           }`}
         >
           Ayam Bakar
         </span>
-        <span className="text-[0.625rem] font-semibold uppercase tracking-[0.28em] text-api-orange">
+        <span
+          className={`text-[0.625rem] font-semibold uppercase tracking-[0.28em] transition-colors duration-200 ${
+            tone === "light" ? "text-api-orange" : "text-api-orange-dark"
+          }`}
+        >
           Mas Budi
         </span>
       </span>

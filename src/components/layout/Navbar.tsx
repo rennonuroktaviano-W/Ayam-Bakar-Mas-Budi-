@@ -42,9 +42,19 @@ export function Navbar() {
 
   const solid = scrolled || open;
 
+  // The header starts transparent over the dark hero band, so it needs light
+  // text there. Once it has the cream background the dark text is the readable
+  // one. Both durations below must match the header's own transition, otherwise
+  // the text finishes recolouring while the background is still mid-fade and
+  // dark text ends up on a dark backdrop for a few frames.
+  const idleClass = solid
+    ? "text-api-charcoal hover:text-api-orange-dark"
+    : "text-white hover:text-api-orange";
+  const activeClass = solid ? "text-api-orange-dark" : "text-api-orange";
+
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition duration-200 ${
         solid
           ? "bg-api-cream/95 backdrop-blur-md shadow-md shadow-api-charcoal/5"
           : "bg-transparent"
@@ -54,7 +64,7 @@ export function Navbar() {
         aria-label="Navigasi utama"
         className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8"
       >
-        <Logo tone={solid ? "dark" : "dark"} />
+        <Logo tone={solid ? "dark" : "light"} />
 
         <div className="hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => {
@@ -64,10 +74,8 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
-                className={`relative inline-flex min-h-11 items-center rounded-full px-4 text-sm font-semibold transition ${
-                  active
-                    ? "text-api-orange"
-                    : "text-api-charcoal hover:text-api-orange"
+                className={`relative inline-flex min-h-11 items-center rounded-full px-4 text-sm font-semibold transition-colors duration-200 ${
+                  active ? activeClass : idleClass
                 }`}
               >
                 {link.label}
@@ -87,7 +95,7 @@ export function Navbar() {
             href={waCustomLink("Halo, saya mau pesan ayam bakar.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden min-h-11 items-center gap-2 rounded-full bg-api-orange px-5 text-sm font-semibold text-white shadow-lg shadow-api-orange/30 transition hover:bg-api-orange-dark active:scale-[0.98] sm:inline-flex lg:hidden xl:inline-flex"
+            className="hidden min-h-11 items-center gap-2 rounded-full bg-api-orange-dark px-5 text-sm font-semibold text-white shadow-lg shadow-api-orange-dark/30 transition hover:bg-api-brick active:scale-[0.98] sm:inline-flex lg:hidden xl:inline-flex"
           >
             <Phone className="h-4 w-4" aria-hidden />
             Pesan Sekarang
@@ -169,7 +177,7 @@ export function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               tabIndex={open ? 0 : -1}
-              className="inline-flex min-h-13 w-full items-center justify-center gap-2 rounded-2xl bg-api-orange px-5 py-3.5 text-base font-semibold text-white shadow-lg shadow-api-orange/30"
+              className="inline-flex min-h-13 w-full items-center justify-center gap-2 rounded-2xl bg-api-orange-dark px-5 py-3.5 text-base font-semibold text-white shadow-lg shadow-api-orange-dark/30 transition hover:bg-api-brick"
             >
               <Phone className="h-5 w-5" aria-hidden />
               Pesan via WhatsApp
